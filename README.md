@@ -42,3 +42,15 @@ Pull permit to rsync remote directory to local.
 make pull/github/pierozi/dsync
 ```
 ----------
+
+#### <i class="icon-info"></i> Ignore path or file with .dsyncignore
+Make a file into your root project sync and touch file named `.dsyncignore`
+the syntax are similar to an `.gitignore`
+it's useful for ignore some heavy files you don't want push to your server...
+
+*this example build an dsyncignore file for ignore Packer & Vagrant resources*
+```
+echo -e "*.box\n*-vbox\n.vagrant\npacker_cache" > namespace/myProject/.dsyncignore
+make push/namespace/myProject
+```
+----------

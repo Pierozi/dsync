@@ -20,6 +20,7 @@ PathRemote	= $(PathRemoteBase)/$(Path)
 llctime		= $(shell find $(PathLocal) | xargs -I FD stat -c%Y FD | sort -ur | head -n 1)
 dsynctime	= $(shell cat $(PathLocal)/.dsynctime)
 time		= $(shell echo $$((`date +%s`-100)))
+dsyncignore	= $(shell test -s $(PathLocal)/.dsyncignore && cat $(PathLocal)/.dsyncignore | awk '{ print "--exclude ""\""$$1"\""""}')
 
 
 .PHONY: clone pull push dstime dstimelw
@@ -98,7 +99,7 @@ push/%:
 		ssh $(sshUser)@$(sshRemote) mkdir -p $(PathRemote);			\
 											\
 		rsync -azv	                                            	 	\
-			--delete --stats --human-readable				\
+			--delete --stats --human-readable $(dsyncignore)		\
                 	-e "ssh -i $(sshKey) -l $(sshUser)"                    	 	\
 			$(PathLocal)/ $(sshRemote):$(PathRemote);   			\
                                                                                         \
