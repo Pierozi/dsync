@@ -25,21 +25,32 @@ PathRemoteBase  := /where/you/want
 Clone permit to clone repository and create file `.dsynctime` at same time. 
 *The following command will be create persistent folder `/github/pierozi/dsync`*
 ```
-make clone/github/pierozi/dsync repo=https://github.com/Pierozi/dsync.git 
+$ make clone/github/pierozi/dsync repo=https://github.com/Pierozi/dsync.git 
 ```
 ----------
 
 #### <i class="icon-upload"></i> Push
 Push permit to rsync local directory to remote server. 
 ```
-make push/github/pierozi/dsync
+$ make push/github/pierozi/dsync
 ```
 ----------
 
 #### <i class="icon-refresh"></i> Pull
 Pull permit to rsync remote directory to local. 
 ```
-make pull/github/pierozi/dsync
+$ make pull/github/pierozi/dsync
+```
+----------
+
+#### <i class="icon-time"></i> Tinfo
+Tinfo show the three timer : Local | Push local | Push distant. 
+```
+$ make tinfo/github/pierozi/dsync
+
+Locale time  : 12/01/2015 16:51:14
+Push time    : 09/09/2014 01:33:17
+Distant time : 09/09/2014 01:33:17
 ```
 ----------
 
@@ -50,7 +61,7 @@ it's useful for ignore some heavy files you don't want push to your server...
 
 *this example build an dsyncignore file for ignore Packer & Vagrant resources*
 ```
-echo -e "*.box\n*-vbox\n.vagrant\npacker_cache" > namespace/myProject/.dsyncignore
-make push/namespace/myProject
+$ echo -e "*.box\n*-vbox\n.vagrant\npacker_cache" > namespace/myProject/.dsyncignore
+$ make push/namespace/myProject
 ```
 ----------
